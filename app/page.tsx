@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import HeroSection from "./components/home/HeroSection";
 import DataCount from "./components/home/DataCount";
 import { Skills } from "./components/home/Skills";
+//import Project from "./components/home/Project";
 
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
        <HeroSection />
        <DataCount />
        <Skills />
+       {/*<Project />*/}
       </div>
     </main>
     </>

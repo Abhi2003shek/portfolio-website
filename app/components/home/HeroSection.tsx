@@ -47,10 +47,10 @@ const HeroSection = () => {
             voluptuous.
           </p>
           <div className="space-x-4">
-            <Link href="/#contact">
+            <Link href="/contact" >
               <button className="btn btn-ghost">Hire Me</button>
             </Link>
-            <Link href="/">
+            <Link href="/Abhishek_Sharma_Resume(2024).pdf" download="Abhishek_Sharma_Resume(2024).pdf">
               <button className="btn btn-outline btn-primary">Download CV</button>
             </Link>
           </div>
