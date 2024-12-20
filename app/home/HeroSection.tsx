@@ -4,7 +4,7 @@ import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import profile from '../assets/profile.png';
+import profile from '../components/assets/profile.png';
 
 
 const HeroSection = () => {

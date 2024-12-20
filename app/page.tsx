@@ -1,24 +1,16 @@
-"use client"
-import Navbar from "./components/Navbar";
-import HeroSection from "./components/home/HeroSection";
-import DataCount from "./components/home/DataCount";
-import { Skills } from "./components/home/Skills";
-//import Project from "./components/home/Project";
+
+import Home from "./home/page"
+import Navbar from "./Navbar";
 
 
-export default function Home() {
+
+export default function Page() {
   return (
     <>
-    
-    <main className="flex min-h-screen flex-col">
-      <Navbar />
-      <div className="container  mx-auto px-10">
-       <HeroSection />
-       <DataCount />
-       <Skills />
-       {/*<Project />*/}
-      </div>
-    </main>
+      <main className="flex min-h-screen flex-col">
+        <Navbar />
+        <Home />
+      </main>
     </>
   );
 }
