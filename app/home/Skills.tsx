@@ -52,7 +52,7 @@ const slugs = [
 
 export function Skills() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 items-center justify-center px-4 sm:px-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2  items-start justify-center px-4 sm:px-8">
       <div className="flex items-center justify-center rounded-lg p-8 w-full">
         <IconCloud iconSlugs={slugs} />
       </div>
