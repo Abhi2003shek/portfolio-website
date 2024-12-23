@@ -11,7 +11,6 @@ export default function Page() {
       <main className="flex min-h-screen flex-col">
         <Navbar />
         <Home />
-        
       </main>
       <Footer />
     </>

@@ -1,5 +1,7 @@
-import IconCloud from "@/components/ui/icon-cloud";
+"use client"
+import React from "react";
 import Image from "next/image";
+import IconCloud from "@/components/ui/icon-cloud";
 import C from "../components/assets/skillLogo/c.png";
 import Java from "../components/assets/skillLogo/java.png";
 import Python from "../components/assets/skillLogo/python.png";
@@ -51,191 +53,184 @@ const slugs = [
 ];
 
 export function Skills() {
+  const [activeTab, setActiveTab] = React.useState("language");
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2  items-start justify-center px-4 sm:px-8">
-      <div className="flex items-center justify-center rounded-lg p-8 w-full">
+    <div className="flex flex-col lg:flex-row px-4 sm:px-8">
+      {/* Icon Cloud Section */}
+      <div className="lg:w-1/2 flex items-center justify-center rounded-lg p-8">
         <IconCloud iconSlugs={slugs} />
       </div>
 
-      <div className="flex flex-col rounded-lg p-8 w-full items-center">
-        <h1 className="mb-8 text-xl sm:text-xl lg:text-2xl xl:text-3xl font-extrabold text-center p-5">
+      {/* Skills Tabs Section */}
+      <div className="lg:w-1/2">
+        <h1 className="mb-8 text-xl sm:text-xl lg:text-2xl xl:text-3xl font-extrabold text-center lg:text-left p-5">
           Technical Skills & Tools
         </h1>
 
+        <div className="tabs tabs-boxed flex justify-center lg:justify-start mb-6">
+          <button
+            className={`tab tab-lg tab-lifted text-lg ${
+              activeTab === "language" ? "tab-active" : ""
+            }`}
+            onClick={() => setActiveTab("language")}
+          >
+            Languages
+          </button>
+          <button
+            className={`tab tab-lg tab-lifted text-lg ${
+              activeTab === "frontend" ? "tab-active" : ""
+            }`}
+            onClick={() => setActiveTab("frontend")}
+          >
+            Frontend
+          </button>
+          <button
+            className={`tab tab-lg tab-lifted text-lg ${
+              activeTab === "backend" ? "tab-active" : ""
+            }`}
+            onClick={() => setActiveTab("backend")}
+          >
+            Backend
+          </button>
+          <button
+            className={`tab tab-lg tab-lifted text-lg ${
+              activeTab === "uiux" ? "tab-active" : ""
+            }`}
+            onClick={() => setActiveTab("uiux")}
+          >
+            UI/UX
+          </button>
+          <button
+            className={`tab tab-lg tab-lifted text-lg ${
+              activeTab === "tools" ? "tab-active" : ""
+            }`}
+            onClick={() => setActiveTab("tools")}
+          >
+            Tools
+          </button>
+        </div>
+
         <div
-          role="tablist"
-          className="tabs tabs-lifted w-full max-w-4xl table-fixed"
-          style={{ minHeight: "500px" }}
+          className="grid gap-6 w-full transition-all duration-300"
+          style={{
+            gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))",
+            gridAutoRows: "140px",
+            height: "auto",
+          }}
         >
-  
-          <input
-            type="radio"
-            name="my_tabs_2"
-            role="tab"
-            className="tab h-20"
-            aria-label="Language"
-            defaultChecked
-          />
-          <div
-            role="tabpanel"
-            className="tab-content bg-base-100 border-base-300 rounded-box p-6"
-          >
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-6 w-full">
+          {activeTab === "language" && (
+            <>
+              <div className="flex flex-col items-center">
+                <Image src={C} alt="C" width={60} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">C</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src={Python} alt="Python" width={57} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">Python</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src={Java} alt="Java" width={47} height={40} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">Java</p>
+              </div>
+            </>
+          )}
 
+          {activeTab === "frontend" && (
+            <>
               <div className="flex flex-col items-center">
-                <Image src={C} alt="C" width={48} height={48} />
-                <p className="text-center mt-2">C</p>
+                <Image src={HTML} alt="HTML" width={60} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">HTML</p>
               </div>
-             
               <div className="flex flex-col items-center">
-                <Image src={Python} alt="Python" width={48} height={48} />
-                <p className="text-center mt-2">Python</p>
+                <Image src={CSS} alt="CSS" width={60} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">CSS</p>
               </div>
-            
               <div className="flex flex-col items-center">
-                <Image src={Java} alt="Java" width={40} height={40} />
-                <p className="text-center mt-1">Java</p>
+                <Image src={JavaScript} alt="JavaScript" width={60} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">JavaScript</p>
               </div>
-            </div>
-          </div>
+              <div className="flex flex-col items-center">
+                <Image src={TypeScript} alt="TypeScript" width={60} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">TypeScript</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src={ReactJS} alt="React.js" width={60} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">React.js</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src={NextJS} alt="Next.js" width={60} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">Next.js</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src={Tailwind} alt="Tailwind CSS" width={60} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">Tailwind CSS</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src={Bootstrap} alt="Bootstrap" width={60} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">Bootstrap</p>
+              </div>
+            </>
+          )}
 
+          {activeTab === "backend" && (
+            <>
+              <div className="flex flex-col items-center">
+                <Image src={Node} alt="Node.js" width={85} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">Node.js</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src={mongoDB} alt="MongoDB" width={30} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">MongoDB</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src={MySQL} alt="MySQL" width={60} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">MySQL</p>
+              </div>
+              <div className="flex flex-col items-center">
+                <Image src={Firebase} alt="Firebase" width={60} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">Firebase</p>
+              </div>
+            </>
+          )}
 
-          <input
-            type="radio"
-            name="my_tabs_2"
-            role="tab"
-            className="tab h-20"
-            aria-label="Front-End"
-          />
-          <div
-            role="tabpanel"
-            className="tab-content bg-base-100 border-base-300 rounded-box p-6"
-          >
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-6 w-full">
+          {activeTab === "uiux" && (
+            <>
               <div className="flex flex-col items-center">
-                <Image src={HTML} alt="HTML" width={48} height={48} />
-                <p className="text-center mt-2">HTML</p>
+                <Image src={Figma} alt="Figma" width={45} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">Figma</p>
               </div>
               <div className="flex flex-col items-center">
-                <Image src={CSS} alt="CSS" width={48} height={48} />
-                <p className="text-center mt-2">CSS</p>
+                <Image src={AdobeXD} alt="Adobe XD" width={60} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">Adobe XD</p>
               </div>
-              <div className="flex flex-col items-center">
-                <Image src={JavaScript} alt="JavaScript" width={48} height={48} />
-                <p className="text-center mt-2">JavaScript</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <Image src={TypeScript} alt="TypeScript" width={48} height={48} />
-                <p className="text-center mt-3">TypeScript</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <Image src={ReactJS} alt="React" width={48} height={48} />
-                <p className="text-center mt-2">React.js</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <Image src={NextJS} alt="Next.js" width={48} height={48} />
-                <p className="text-center mt-3">Next.js</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <Image src={Tailwind} alt="Tailwind CSS" width={48} height={48} />
-                <p className="text-center mt-2">Tailwind CSS</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <Image src={Bootstrap} alt="Bootstrap" width={50} height={50} />
-                <p className="text-center mt-2">Bootstrap</p>
-              </div>
-            </div>
-          </div>
+            </>
+          )}
 
-
-          <input
-            type="radio"
-            name="my_tabs_2"
-            role="tab"
-            className="tab h-20"
-            aria-label="Back-End & Database"
-          />
-          <div
-            role="tabpanel"
-            className="tab-content bg-base-100 border-base-300 rounded-box p-6"
-          >
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-6 w-full">
+          {activeTab === "tools" && (
+            <>
               <div className="flex flex-col items-center">
-                <Image src={Node} alt="Node.js" width={55} height={55} />
-                <p className="text-center mt-2">Node.js</p>
+                <Image src={VScode} alt="VS Code" width={60} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">VS Code</p>
               </div>
               <div className="flex flex-col items-center">
-                <Image src={mongoDB} alt="MongoDB" width={24} height={24} />
-                <p className="text-center mt-2">MongoDB</p>
+                <Image src={GitHub} alt="GitHub" width={100} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">GitHub</p>
               </div>
               <div className="flex flex-col items-center">
-                <Image src={MySQL} alt="MySQL" width={48} height={48} />
-                <p className="text-center mt-2">MySQL</p>
+                <Image src={Linux} alt="Linux" width={60} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">Linux</p>
               </div>
               <div className="flex flex-col items-center">
-                <Image src={Firebase} alt="Firebase" width={48} height={48} />
-                <p className="text-center mt-2">Firebase</p>
-              </div>
-            </div>
-          </div>
-
-          <input
-            type="radio"
-            name="my_tabs_2"
-            role="tab"
-            className="tab h-20"
-            aria-label="UI/UX Design"
-          />
-          <div
-            role="tabpanel"
-            className="tab-content bg-base-100 border-base-300 rounded-box p-6"
-          >
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-6 w-full">
-              <div className="flex flex-col items-center">
-                <Image src={Figma} alt="Figma" width={36} height={36} />
-                <p className="text-center mt-1">Figma</p>
+                <Image src={Eclipse} alt="Eclipse" width={60} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">Eclipse</p>
               </div>
               <div className="flex flex-col items-center">
-                <Image src={AdobeXD} alt="Adobe XD" width={48} height={48} />
-                <p className="text-center mt-3">Adobe XD</p>
+                <Image src={Spyder} alt="Spyder" width={60} height={60} className="custom-skill-image" />
+                <p className="text-center mt-2 text-sm custom-skill-text">Spyder</p>
               </div>
-            </div>
-          </div>
-
-          <input
-            type="radio"
-            name="my_tabs_2"
-            role="tab"
-            className="tab h-20"
-            aria-label="Tools"
-          />
-          <div
-            role="tabpanel"
-            className="tab-content bg-base-100 border-base-300 rounded-box p-6"
-          >
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-6 w-full">
-              <div className="flex flex-col items-center">
-                <Image src={VScode} alt="VScode" width={48} height={48} />
-                <p className="text-center mt-2">VScode</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <Image src={Eclipse} alt="Eclipse" width={48} height={48} />
-                <p className="text-center mt-3">Eclipse</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <Image src={Spyder} alt="Spyder" width={48} height={48} />
-                <p className="text-center mt-2">Spyder</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <Image src={Linux} alt="Linux" width={48} height={48} />
-                <p className="text-center mt-1">Linux</p>
-              </div>
-              <div className="flex flex-col items-center">
-                <Image src={GitHub} alt="GitHub" width={100} height={100} />
-                <p className="text-center mt-5">GitHub</p>
-              </div>
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </div>
     </div>
