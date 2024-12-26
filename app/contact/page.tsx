@@ -37,6 +37,7 @@ const Contact = () => {
   };
 
   return (
+    <>
     <main className="flex min-h-screen flex-col">
       <Navbar />
       <section className="bg-base-100">
@@ -94,8 +95,9 @@ const Contact = () => {
           </form>
         </div>
       </section>
-      <Footer />
     </main>
+    <Footer />
+    </>
   );
 };
 

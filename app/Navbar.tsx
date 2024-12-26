@@ -48,10 +48,7 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
           >
             <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/about">About Me</Link>
+              <Link href="/">About Me</Link>
             </li>
             <li>
               <Link href="/experience">Experience</Link>
@@ -81,10 +78,7 @@ export default function Navbar() {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/about">About Me</Link>
+            <Link href="/">About Me</Link>
           </li>
           <li>
             <details>
