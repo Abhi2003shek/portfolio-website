@@ -5,22 +5,27 @@ import Link from "next/link";
 export default function Navbar() {
   const [theme, setTheme] = useState("fantasy");
 
+  // Effect to load theme from localStorage
   useEffect(() => {
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) {
       setTheme(savedTheme);
       document.documentElement.setAttribute("data-theme", savedTheme);
       document.body.setAttribute("data-theme", savedTheme);
+    } else {
+      setTheme("fantasy");
+      document.documentElement.setAttribute("data-theme", "fantasy");
+      document.body.setAttribute("data-theme", "fantasy");
     }
   }, []);
 
-
+  // Toggle between themes
   const toggleTheme = () => {
     const newTheme = theme === "fantasy" ? "night" : "fantasy";
     setTheme(newTheme);
     document.documentElement.setAttribute("data-theme", newTheme);
     document.body.setAttribute("data-theme", newTheme);
-    localStorage.setItem("theme", newTheme);
+    localStorage.setItem("theme", newTheme); // Store theme in localStorage
   };
 
   return (

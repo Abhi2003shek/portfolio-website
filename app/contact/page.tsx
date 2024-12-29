@@ -42,9 +42,9 @@ const Contact = () => {
       <Navbar />
       <section className="bg-base-100">
         <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-          <h2 className="mb-4 text-4xl font-extrabold text-center">Contact Us</h2>
-          <p className="mb-8 lg:mb-16 text-center text-neutral-content text-lg">
-            Got a technical issue? Want to send feedback about a beta feature? Need details about our Business plan? Let us know.
+          <h2 className="mb-4 text-4xl font-extrabold text-center">Contact Me</h2>
+          <p className="mb-8 lg:mb-16 text-center text-neutral-400 text-lg">
+            Want to connect with me? Discuss more  
           </p>
           <form onSubmit={handleSubmit} className="space-y-8">
             <div className="form-control">
@@ -54,7 +54,7 @@ const Contact = () => {
               <input
                 type="email"
                 id="email"
-                placeholder="name@flowbite.com"
+                placeholder="name@gmail.com"
                 className="input input-bordered w-full"
                 required
                 value={formData.email}
@@ -68,7 +68,7 @@ const Contact = () => {
               <input
                 type="text"
                 id="subject"
-                placeholder="Let us know how we can help you"
+                placeholder="Let me know how I can help you"
                 className="input input-bordered w-full"
                 required
                 value={formData.subject}
@@ -82,7 +82,7 @@ const Contact = () => {
               <textarea
                 id="message"
                 rows={6}
-                placeholder="Leave a comment..."
+                placeholder="Message for me...."
                 className="textarea textarea-bordered w-full"
                 required
                 value={formData.message}
