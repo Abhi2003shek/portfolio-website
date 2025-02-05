@@ -42,9 +42,8 @@ const HeroSection = () => {
   />
 </h1>
 
-          <p className="text-base sm:text-lg mb-6 lg:text-xl">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
-            voluptuous.
+          <p className="text-base pb-2 sm:text-lg mb-6 lg:text-xl">
+          Fueled by relentless curiosity, I code to push the boundaries of technology.
           </p>
           <div className="space-x-4">
             <Link href="/contact" >

@@ -67,7 +67,7 @@ export default function Navbar() {
               </ul>
             </li>
             <li>
-              <Link href="/projects">Projects</Link>
+              <Link href="/Projects">Projects</Link>
             </li>
             <li>
               <Link href="/contact">Contact</Link>
@@ -99,7 +99,7 @@ export default function Navbar() {
             </details>
           </li>
           <li>
-            <Link href="/projects">Projects</Link>
+            <Link href="/Projects">Projects</Link>
           </li>
           <li>
             <Link href="/contact">Contact</Link>

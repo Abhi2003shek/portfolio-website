@@ -1,7 +1,7 @@
 "use client"
 import React from "react";
 import Image from "next/image";
-import IconCloud from "@/components/ui/icon-cloud";
+import { IconCloud } from "@/components/ui/icon-cloud";
 import C from "../components/assets/skillLogo/c.png";
 import Java from "../components/assets/skillLogo/java.png";
 import Python from "../components/assets/skillLogo/python.png";
@@ -55,15 +55,18 @@ const slugs = [
 export function Skills() {
   const [activeTab, setActiveTab] = React.useState("language");
 
+  const images = slugs.map(
+    (slug) => `https://cdn.simpleicons.org/${slug}/${slug}`,
+  );
   return (
 <>
-  <h1 className="flex justify-center mt-18  text-xl sm:text-xl lg:text-2xl xl:text-3xl font-extrabold text-center lg:text-left lg:mb-20">
+  <h1 className="flex justify-center mt-5 text-2xl sm:text-xl lg:text-2xl xl:text-3xl font-extrabold text-center lg:text-left lg:mb-20">
     Technical Skills & Tools
   </h1>
   <div className="flex flex-col lg:flex-row px-4 sm:px-4">
     {/* Icon Cloud Section */}
-    <div className="lg:w-1/2 flex items-center justify-center rounded-lg">
-      <IconCloud iconSlugs={slugs} />
+    <div className="relative flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg ">
+      <IconCloud images={images}/>
     </div>
 
     {/* Skills Tabs Section */}
@@ -71,7 +74,7 @@ export function Skills() {
 
       <div className="lg:hidden mb-6 ">
         <select 
-          className="select rounded-lg shadow dark:border-white flex justify-start min-w-full mb-10 mt-10" 
+          className="select rounded-lg shadow dark:border-white flex justify-start min-w-full mb-10 mt-5" 
           value={activeTab} 
           onChange={(e) => setActiveTab(e.target.value)}
         >
