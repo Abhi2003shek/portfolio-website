@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -42,7 +44,16 @@ const Contact = () => {
       <Navbar />
       <section className="bg-base-100">
         <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+          <motion.div
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5 }} >
           <h2 className="mb-4 text-4xl font-extrabold text-center">Contact Me</h2>
+          </motion.div>
+          <motion.div
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.5 }} >
           <p className="mb-8 lg:mb-16 text-center text-neutral-400 text-lg">
             Want to connect with me? Discuss more  
           </p>
@@ -93,8 +104,15 @@ const Contact = () => {
               Send message
             </button>
           </form>
+          </motion.div>
         </div>
       </section>
+      <Link href="/" className="link link-hover flex justify-center text-sm  pb-5 ">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-left" viewBox="0 0 16 16">
+          <path fillRule="evenodd" d="M11.5 8a.5.5 0 0 1-.5-.5H4.707l3.146-3.146a.5.5 0 1 1-.708-.708l-4 4a.5.5 0 0 1 0 .708l4 4a.5.5 0 1 1 .708-.708L4.707 8.5h6.293a.5.5 0 0 1 .5-.5z"/>
+        </svg>
+        Back to About Me
+      </Link>
     </main>
     <Footer />
     </>

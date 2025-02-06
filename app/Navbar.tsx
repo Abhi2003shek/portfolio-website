@@ -57,17 +57,9 @@ export default function Navbar() {
             </li>
             <li>
               <Link href="/experience">Experience</Link>
-              <ul className="p-2">
-                <li>
-                  <Link href="/experience/technical">Technical</Link>
-                </li>
-                <li>
-                  <Link href="/experience/volunteering">Volunteering</Link>
-                </li>
-              </ul>
             </li>
             <li>
-              <Link href="/Projects">Projects</Link>
+              <Link href="/projects">Projects</Link>
             </li>
             <li>
               <Link href="/contact">Contact</Link>
@@ -86,20 +78,10 @@ export default function Navbar() {
             <Link href="/">About Me</Link>
           </li>
           <li>
-            <details>
-              <summary>Experience</summary>
-              <ul className="p-2">
-                <li>
-                  <Link href="/experience/technical">Technical</Link>
-                </li>
-                <li>
-                  <Link href="/experience/volunteering">Volunteering</Link>
-                </li>
-              </ul>
-            </details>
+                  <Link href="/experience">Experience</Link>
           </li>
           <li>
-            <Link href="/Projects">Projects</Link>
+            <Link href="/projects">Projects</Link>
           </li>
           <li>
             <Link href="/contact">Contact</Link>
