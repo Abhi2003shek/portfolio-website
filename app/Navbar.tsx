@@ -29,7 +29,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="navbar border-dashed border-2 bg-base-100 mx-auto mt-3 mb-2 rounded-xl shadow-md sticky top-3 z-50 w-[95%] lg:w-[85%]">
+    <div className="navbar border-dashed border-2 font-caveat  bg-base-100 mx-auto mt-3 mb-2 rounded-xl shadow-md sticky top-3 z-50 w-[95%] lg:w-[85%]">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

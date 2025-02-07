@@ -9,12 +9,30 @@ import APS from "../components/assets/APS.png";
 const Education: React.FC = () => {
   return (
     <div className="mt-3 mb-16">
-      <h2 className="mb-8 text-2xl sm:text-2xl lg:text-2xl xl:text-3xl font-extrabold text-center lg:text-left p-5 flex justify-center">
+      <motion.h2
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        className="mb-8 text-2xl sm:text-2xl lg:text-2xl xl:text-3xl font-extrabold text-center lg:text-left p-5 flex justify-center"
+      >
         Education
-      </h2>
-      <div className="flex flex-col grid-cols-9 p-2 mx-auto md:grid">
+      </motion.h2>
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        className="flex flex-col grid-cols-9 p-2 mx-auto md:grid"
+      >
         {/* Section 1 */}
-        <div className="flex md:contents flex-row-reverse">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="flex md:contents flex-row-reverse"
+        >
           <div className="relative p-4 my-6 bg-white border-2 border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 col-start-1 col-end-5 mr-auto md:mr-0 md:ml-auto flex items-center flex-col md:flex-row">
             <Image src={Bachelor} alt="Education 1" className="w-20 h-15 mb-4 md:mb-0 md:mr-4" />
             <div>
@@ -30,10 +48,16 @@ const Education: React.FC = () => {
             </div>
             <div className="absolute w-6 h-6 -mt-3 bg-base-100 border-4 border-info dark:border-lime-400 rounded-full top-1/2"></div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Section 2 */}
-        <div className="flex md:contents">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="flex md:contents"
+        >
           <div className="relative col-start-5 col-end-6 mr-7 md:mx-auto">
             <div className="flex items-center justify-center w-6 h-full">
               <div className="w-1 h-full bg-info dark:bg-lime-400 rounded-t-full bg-gradient-to-b from-info-focus to-info"></div>
@@ -49,10 +73,16 @@ const Education: React.FC = () => {
               <span className="absolute text-sm -top-5 left-2 whitespace-nowrap text-gray-700 dark:text-gray-400">High School</span>
             </div>
           </div>
-        </div>
+        </motion.div>
 
-        {/* Section 3 */}
-        <div className="flex md:contents flex-row-reverse">
+        {/* Section 3 - 10th Standard */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+          className="flex md:contents flex-row-reverse"
+        >
           <div className="relative p-4 my-6 bg-white border-2 border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 col-start-1 col-end-5 mr-auto md:mr-0 md:ml-auto flex items-center flex-col md:flex-row">
             <Image src={APS} alt="Education 1" className="w-20 h-15 mb-4 md:mb-0 md:mr-4" />
             <div>
@@ -64,12 +94,12 @@ const Education: React.FC = () => {
           </div>
           <div className="relative col-start-5 col-end-6 mr-7 md:mx-auto">
             <div className="flex items-center justify-center w-6 h-full">
-              <div className="w-1 h-full bg-info dark:bg-lime-400 rounded-t-full bg-gradient-to-b from-info-focus to-info"></div>
+              <div className="w-1 h-full bg-info dark:bg-lime-400 rounded-t-full"></div>
             </div>
             <div className="absolute w-6 h-6 -mt-3 bg-base-100 border-4 border-info dark:border-lime-400 rounded-full top-1/2"></div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };

@@ -20,7 +20,7 @@ const projects = [
 
 export default function Content() {
   return (
-    <div className="pb-10 flex flex-col items-center w-full">
+    <div className="pb-10 flex flex-col items-center w-full font-caveat">
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}

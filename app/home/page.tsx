@@ -16,7 +16,7 @@ export default function Index() {
   };
 
   return (
-    <div className="container mx-auto px-10">
+    <div className="container mx-auto px-10 font-caveat">
       <HeroSection />
       <DataCount />
       <Education />
@@ -28,7 +28,7 @@ export default function Index() {
           e.preventDefault();
           setTimeout(scrollToTop, 300);  // Delay for smooth scroll effect
         }}
-        className="flex items-center justify-center text-sm pt-5 pb-5 transform hover:scale-105 transition duration-300"
+        className="font-caveat flex items-center justify-center text-sm pt-5 pb-5 transform hover:scale-105 transition duration-300"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

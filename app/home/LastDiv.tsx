@@ -1,20 +1,33 @@
 "use client";
 import Link from "next/link";
 import React from "react";
+import { motion } from "framer-motion";
 
 const LastDiv = () => {
   return (
-    <div className="w-full py-5 flex flex-col items-center mb-10">
+    <motion.div 
+      initial={{ opacity: 0, y: 50 }} 
+      whileInView={{ opacity: 1, y: 0 }} 
+      transition={{ duration: 0.5 }} 
+      viewport={{ once: true }}
+      className="w-full py-5 flex flex-col items-center mb-10"
+    >
       <div className="w-full max-w-6xl flex flex-col lg:flex-row items-center">
 
-        <div className="flex flex-col items-center lg:w-1/2 p-6 mb-8 lg:mb-0">
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.5 }} 
+          viewport={{ once: true }}
+          className="flex flex-col items-center lg:w-1/2 p-6 mb-8 lg:mb-0"
+        >
           <div className="relative w-24 h-24 rounded-full overflow-hidden mb-2 flex justify-center items-center">
             <svg 
-              className="w-[60px] h-[60px] text-gray-800 dark:text-white" // Increased size
+              className="w-[60px] h-[60px] text-gray-800 dark:text-white" 
               aria-hidden="true" 
               xmlns="http://www.w3.org/2000/svg" 
-              width="50" // Increased size
-              height="50" // Increased size
+              width="50" 
+              height="50" 
               fill="currentColor" 
               viewBox="0 0 24 24"
             >
@@ -27,48 +40,48 @@ const LastDiv = () => {
           </div>
           <h3 className="lg:text-3xl text-2xl font-semibold mb-4">Experience</h3>
           <p className="text-center mb-6">
-            Bringing expertise to drive innovation and success..
+            Bringing expertise to drive innovation and success.
           </p>
-          <a href="/experience" className="flex items-center text-info dark:text-lime-400 transform hover:scale-105 transition duration-300">
+          <Link href="/experience" className="flex items-center text-info dark:text-lime-400 transform hover:scale-105 transition duration-300">
             View More
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right-short ml-2" viewBox="0 0 16 16">
               <path fillRule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
             </svg>
-          </a>
-        </div>
+          </Link>
+        </motion.div>
 
         <div className="divider lg:divider-horizontal text-gray-400"></div>
 
-        <div className="flex flex-col items-center lg:w-1/2 p-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }} 
+          whileInView={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.5 }} 
+          viewport={{ once: true }}
+          className="flex flex-col items-center lg:w-1/2 p-6"
+        >
           <div className="relative w-24 h-24 rounded-full overflow-hidden mb-2 flex justify-center items-center">
             <svg
-              className="w-[60px] h-[60px] text-gray-800 dark:text-white" // Increased size
+              className="w-[60px] h-[60px] text-gray-800 dark:text-white" 
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
-              width="50" // Increased size
-              height="50" // Increased size
+              width="50" 
+              height="50" 
               fill="currentColor"
               viewBox="0 0 24 24">
-              <path
-                fillRule="evenodd"
-                d="M3 4a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H3Zm4.293 5.707a1 1 0 0 1 1.414-1.414l3 3a1 1 0 0 1 0 1.414l-3 3a1 1 0 0 1-1.414-1.414L9.586 12 7.293 9.707ZM13 14a1 1 0 1 0 0 2h3a1 1 0 1 0 0-2h-3Z"
-                clipRule="evenodd"
-              />
+              <path fillRule="evenodd" d="M3 4a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H3Zm4.293 5.707a1 1 0 0 1 1.414-1.414l3 3a1 1 0 0 1 0 1.414l-3 3a1 1 0 0 1-1.414-1.414L9.586 12 7.293 9.707ZM13 14a1 1 0 1 0 0 2h3a1 1 0 1 0 0-2h-3Z" clipRule="evenodd"/>
             </svg>
           </div>
           <h3 className="lg:text-3xl text-2xl font-semibold mb-4">Projects</h3>
-          <p className="text-center mb-6">
-            Turning ideas into impactful projects with creativity and precision.
-          </p>
+          <p className="text-center mb-6">Turning ideas into impactful projects with creativity and precision.</p>
           <Link href="/projects" className="flex items-center text-info dark:text-lime-400 transform hover:scale-105 transition duration-300">
             View More
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right-short ml-2" viewBox="0 0 16 16">
               <path fillRule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"/>
             </svg>
           </Link>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -40,10 +40,10 @@ const Contact = () => {
 
   return (
     <>
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col font-caveat">
       <Navbar />
       <section className="bg-base-100">
-        <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+        <div className="py-4 lg:py-8 px-4 mx-auto max-w-screen-md">
           <motion.div
                       initial={{ opacity: 0, scale: 0.5 }}
                       animate={{ opacity: 1, scale: 1 }}
