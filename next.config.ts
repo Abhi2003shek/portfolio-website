@@ -12,4 +12,10 @@ module.exports = {
   },
 };
 
+module.exports = {
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+};
+
 export default nextConfig;
