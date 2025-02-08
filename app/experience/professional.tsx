@@ -11,7 +11,7 @@ export default function Professional() {
         transition={{ duration: 0.25 }}
         className="w-full flex justify-center"
       >
-        <h2 className="mt-3 mb-2 text-3xl  font-extrabold text-center p-5">
+        <h2 className="mt-3 mb-2 text-3xl font-extrabold text-center p-5">
           Professional Experience
         </h2>
       </motion.div>
@@ -39,13 +39,12 @@ export default function Professional() {
         }].map(({ title, company, date, description }, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
             className="relative pl-8 sm:pl-32 py-6 group"
           >
-            <div className="font-caveat font-medium text-2xl text-indigo-500  dark:text-lime-400 mb-1 sm:mb-0">{title}</div>
+            <div className="font-caveat font-medium text-2xl text-indigo-500 dark:text-lime-400 mb-1 sm:mb-0">{title}</div>
             <div className="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300 sm:before:ml-[6.5rem] before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-indigo-600 dark:after:bg-emerald-300 after:border-4 after:box-content after:border-slate-50 after:rounded-full sm:after:ml-[6.5rem] after:-translate-x-1/2 after:translate-y-1.5">
               <time className="sm:absolute left-0 translate-y-0.5 inline-flex items-center justify-center text-xs font-semibold uppercase w-20 h-6 mb-3 sm:mb-0 text-emerald-600 bg-emerald-100 dark:text-indigo-600 dark:bg-indigo-100 rounded-full">{date}</time>
               <div className="text-xl font-bold text-slate-900 dark:text-white">{company}</div>

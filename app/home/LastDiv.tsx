@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
+import { TextAnimate } from "@/components/magicui/text-animate";
 
 const LastDiv = () => {
   return (
@@ -39,9 +40,9 @@ const LastDiv = () => {
             </svg>
           </div>
           <h3 className="lg:text-3xl text-2xl font-semibold mb-4">Experience</h3>
-          <p className="text-center mb-6">
+          <TextAnimate animation="slideUp" by="word" className="text-center mb-6">
             Bringing expertise to drive innovation and success.
-          </p>
+          </TextAnimate>
           <Link href="/experience" className="flex items-center text-info dark:text-lime-400 transform hover:scale-105 transition duration-300">
             View More
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right-short ml-2" viewBox="0 0 16 16">
@@ -72,7 +73,7 @@ const LastDiv = () => {
             </svg>
           </div>
           <h3 className="lg:text-3xl text-2xl font-semibold mb-4">Projects</h3>
-          <p className="text-center mb-6">Turning ideas into impactful projects with creativity and precision.</p>
+          <TextAnimate animation="slideUp" by="word" className="text-center mb-6">Turning ideas into impactful projects with creativity and precision.</TextAnimate>
           <Link href="/projects" className="flex items-center text-info dark:text-lime-400 transform hover:scale-105 transition duration-300">
             View More
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-right-short ml-2" viewBox="0 0 16 16">

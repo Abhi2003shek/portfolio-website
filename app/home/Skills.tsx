@@ -1,6 +1,9 @@
 "use client"
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
+
+
 import { IconCloud } from "@/components/ui/icon-cloud";
 import C from "../components/assets/skillLogo/c.png";
 import Java from "../components/assets/skillLogo/java.png";
@@ -60,16 +63,21 @@ export function Skills() {
   );
   return (
 <>
+   <motion.div 
+         initial={{ opacity: 0, y: 50 }} 
+         whileInView={{ opacity: 1, y: 0 }} 
+         transition={{ duration: 0.5 }} 
+         viewport={{ once: true }}>
   <h1 className="flex justify-center mt-5 text-2xl sm:text-xl lg:text-2xl xl:text-3xl font-extrabold text-center lg:text-left lg:mb-20">
     Technical Skills & Tools
   </h1>
+  </motion.div> 
   <div className="flex flex-col lg:flex-row px-4 sm:px-4">
-    {/* Icon Cloud Section */}
-    <div className="relative flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg ">
-      <IconCloud images={images}/>
-    </div>
+      <div className="relative flex size-full max-w-lg items-center justify-center overflow-hidden rounded-lg ">
+        <IconCloud images={images}/>
+      </div>
 
-    {/* Skills Tabs Section */}
+
     <div className="lg:w-1/2">
 
       <div className="lg:hidden mb-6 ">
@@ -86,7 +94,7 @@ export function Skills() {
         </select>
       </div>
 
-      {/* Tab buttons for larger screens */}
+
       <div className="tabs tabs-bordered lg:justify-between justify-around items-center px-4 mb-6 hidden lg:flex">
         <button 
           className={`tab tab-lg tab-lifted text-lg ${activeTab === "language" ? "tab-active" : ""}`} 

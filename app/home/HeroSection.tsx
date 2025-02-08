@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
+import { TextAnimate } from "@/components/magicui/text-animate";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import profile from '../components/assets/profile.png';
@@ -41,10 +42,9 @@ const HeroSection = () => {
     repeat={Infinity}
   />
 </h1>
-
-          <p className="text-base pb-2 sm:text-lg mb-6 lg:text-xl">
+          <TextAnimate animation="slideUp" by="word" className="text-base pb-2 sm:text-lg mb-6 lg:text-xl">
           Fueled by relentless curiosity, I code to push the boundaries of technology.
-          </p>
+          </TextAnimate>
           <div className="space-x-4">
             <Link href="/contact" >
               <button className="btn btn-ghost">Hire Me</button>

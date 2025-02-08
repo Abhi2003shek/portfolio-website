@@ -2,6 +2,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+
+
 import Project1 from "../components/project/Project-1.png";
 import Project2 from "../components/project/Project-2.png";
 import Project3 from "../components/project/Project-3.png";
