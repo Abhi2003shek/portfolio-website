@@ -62,7 +62,7 @@ const Contact = () => {
                   <label htmlFor="name" className="label">
                     <span className="label-text">Your Name</span>
                   </label>
-                  <input type="text" name="name" placeholder="First name Last name" className="input input-bordered w-full" required value={formData.name} onChange={handleChange} />
+                  <input type="text" name="name" placeholder="FirstName LastName" className="input input-bordered w-full" required value={formData.name} onChange={handleChange} />
                 </div>
                 <div className="form-control">
                   <label htmlFor="email" className="label">
