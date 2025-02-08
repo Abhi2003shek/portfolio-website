@@ -2,7 +2,11 @@ import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    const { email, subject, message } = await req.json();
+    const { name, email, subject, message } = await req.json();
+
+    if (!name || !email || !subject || !message) {
+      return NextResponse.json({ message: "All fields are required." }, { status: 400 });
+    }
 
     const nodemailer = await import("nodemailer");
 
@@ -18,12 +22,12 @@ export async function POST(req: Request) {
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
       replyTo: email,
-      subject: `New Contact Form Submission: ${subject}`,
-      text: `From: ${email}\n\n${message}`,
+      subject: `Portfolio Contact: ${subject}`,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     });
 
     return NextResponse.json({ message: "Email sent successfully!" }, { status: 200 });
   } catch (error) {
-    return NextResponse.json({ message: "Error sending email", error: error.message }, { status: 500 });
+    return NextResponse.json({ message: "Error sending email", error: (error as Error).message }, { status: 500 });
   }
 }

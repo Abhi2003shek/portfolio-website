@@ -7,6 +7,7 @@ import Link from "next/link";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     subject: "",
     message: "",
@@ -15,7 +16,7 @@ const Contact = () => {
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -32,7 +33,7 @@ const Contact = () => {
 
       if (response.ok) {
         alert("Message sent successfully!");
-        setFormData({ email: "", subject: "", message: "" });
+        setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
         const data = await response.json();
         alert(`Failed to send message: ${data.message}`);
@@ -58,25 +59,31 @@ const Contact = () => {
               <p className="mb-8 lg:mb-16 text-center text-neutral-400 text-lg">Want to connect with me? Discuss more</p>
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="form-control">
-                  <label htmlFor="email" className="label">
-                    <span className="label-text">Your email</span>
+                  <label htmlFor="name" className="label">
+                    <span className="label-text">Your Name</span>
                   </label>
-                  <input type="email" id="email" placeholder="name@gmail.com" className="input input-bordered w-full" required value={formData.email} onChange={handleChange} />
+                  <input type="text" name="name" placeholder="First name Last name" className="input input-bordered w-full" required value={formData.name} onChange={handleChange} />
+                </div>
+                <div className="form-control">
+                  <label htmlFor="email" className="label">
+                    <span className="label-text">Your Email</span>
+                  </label>
+                  <input type="email" name="email" placeholder="name@gmail.com" className="input input-bordered w-full" required value={formData.email} onChange={handleChange} />
                 </div>
                 <div className="form-control">
                   <label htmlFor="subject" className="label">
                     <span className="label-text">Subject</span>
                   </label>
-                  <input type="text" id="subject" placeholder="Let me know how I can help you" className="input input-bordered w-full" required value={formData.subject} onChange={handleChange} />
+                  <input type="text" name="subject" placeholder="Let me know how I can help you" className="input input-bordered w-full" required value={formData.subject} onChange={handleChange} />
                 </div>
                 <div className="form-control">
                   <label htmlFor="message" className="label">
-                    <span className="label-text">Your message</span>
+                    <span className="label-text">Your Message</span>
                   </label>
-                  <textarea id="message" rows={6} placeholder="Message for me...." className="textarea textarea-bordered w-full" required value={formData.message} onChange={handleChange}></textarea>
+                  <textarea name="message" rows={6} placeholder="Message for me..." className="textarea textarea-bordered w-full" required value={formData.message} onChange={handleChange}></textarea>
                 </div>
                 <button type="submit" className="btn btn-primary w-full sm:w-auto" disabled={loading}>
-                  {loading ? "Sending..." : "Send message"}
+                  {loading ? "Sending..." : "Send Message"}
                 </button>
               </form>
             </motion.div>
