@@ -22,10 +22,9 @@ function easeOutCubic(t: number): number {
 }
 
 export function IconCloud({ icons, images }: IconCloudProps) {
-  // This state is used to ensure that the component is only rendered on the client.
-  const [isClient, setIsClient] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [iconPositions, setIconPositions] = useState<Icon[]>([]);
+  const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const [lastMousePos, setLastMousePos] = useState({ x: 0, y: 0 });
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -39,18 +38,12 @@ export function IconCloud({ icons, images }: IconCloudProps) {
     duration: number;
   } | null>(null);
   const animationFrameRef = useRef<number | null>(null);
-  const rotationRef = useRef({ x: 0, y: 0 });
+  const rotationRef = useRef(rotation);
   const iconCanvasesRef = useRef<HTMLCanvasElement[]>([]);
   const imagesLoadedRef = useRef<boolean[]>([]);
 
-  // Only render on the client side.
+  // Create icon canvases once when icons/images change
   useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  // Create offscreen canvases for each icon/image.
-  useEffect(() => {
-    if (!isClient) return;
     if (!icons && !images) return;
 
     const items = icons || images || [];
@@ -64,24 +57,26 @@ export function IconCloud({ icons, images }: IconCloudProps) {
 
       if (offCtx) {
         if (images) {
-          // When handling image URLs
+          // Handle image URLs directly
           const img = new Image();
           img.crossOrigin = "anonymous";
           img.src = items[index] as string;
           img.onload = () => {
             offCtx.clearRect(0, 0, offscreen.width, offscreen.height);
 
-            // Create a circular clipping path
+            // Create circular clipping path
             offCtx.beginPath();
             offCtx.arc(20, 20, 20, 0, Math.PI * 2);
             offCtx.closePath();
             offCtx.clip();
 
+            // Draw the image
             offCtx.drawImage(img, 0, 0, 40, 40);
+
             imagesLoadedRef.current[index] = true;
           };
         } else {
-          // When handling SVG icons
+          // Handle SVG icons
           offCtx.scale(0.4, 0.4);
           const svgString = renderToString(item as React.ReactElement);
           const img = new Image();
@@ -97,14 +92,15 @@ export function IconCloud({ icons, images }: IconCloudProps) {
     });
 
     iconCanvasesRef.current = newIconCanvases;
-  }, [icons, images, isClient]);
+  }, [icons, images]);
 
-  // Generate initial icon positions on a sphere using the Fibonacci sphere algorithm.
+  // Generate initial icon positions on a sphere
   useEffect(() => {
-    if (!isClient) return;
     const items = icons || images || [];
     const newIcons: Icon[] = [];
     const numIcons = items.length || 20;
+
+    // Fibonacci sphere parameters
     const offset = 2 / numIcons;
     const increment = Math.PI * (3 - Math.sqrt(5));
 
@@ -117,24 +113,25 @@ export function IconCloud({ icons, images }: IconCloudProps) {
       const z = Math.sin(phi) * r;
 
       newIcons.push({
-        x: x * 120,
-        y: y * 120,
-        z: z * 120,
+        x: x * 100,
+        y: y * 100,
+        z: z * 100,
         scale: 1,
         opacity: 1,
         id: i,
       });
     }
     setIconPositions(newIcons);
-  }, [icons, images, isClient]);
+  }, [icons, images]);
 
-  // Mouse event handlers.
+  // Handle mouse events
   const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
     const rect = canvasRef.current?.getBoundingClientRect();
     if (!rect || !canvasRef.current) return;
 
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
+
     const ctx = canvasRef.current.getContext("2d");
     if (!ctx) return;
 
@@ -159,14 +156,14 @@ export function IconCloud({ icons, images }: IconCloudProps) {
       if (dx * dx + dy * dy < radius * radius) {
         const targetX = -Math.atan2(
           icon.y,
-          Math.sqrt(icon.x * icon.x + icon.z * icon.z)
+          Math.sqrt(icon.x * icon.x + icon.z * icon.z),
         );
         const targetY = Math.atan2(icon.x, icon.z);
 
         const currentX = rotationRef.current.x;
         const currentY = rotationRef.current.y;
         const distance = Math.sqrt(
-          Math.pow(targetX - currentX, 2) + Math.pow(targetY - currentY, 2)
+          Math.pow(targetX - currentX, 2) + Math.pow(targetY - currentY, 2),
         );
 
         const duration = Math.min(2000, Math.max(800, distance * 1000));
@@ -213,9 +210,8 @@ export function IconCloud({ icons, images }: IconCloudProps) {
     setIsDragging(false);
   };
 
-  // Animation and rendering loop.
+  // Animation and rendering
   useEffect(() => {
-    if (!isClient) return;
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
     if (!canvas || !ctx) return;
@@ -271,12 +267,13 @@ export function IconCloud({ icons, images }: IconCloudProps) {
         ctx.save();
         ctx.translate(
           canvas.width / 2 + rotatedX,
-          canvas.height / 2 + rotatedY
+          canvas.height / 2 + rotatedY,
         );
         ctx.scale(scale, scale);
         ctx.globalAlpha = opacity;
 
         if (icons || images) {
+          // Only try to render icons/images if they exist
           if (
             iconCanvasesRef.current[index] &&
             imagesLoadedRef.current[index]
@@ -284,7 +281,7 @@ export function IconCloud({ icons, images }: IconCloudProps) {
             ctx.drawImage(iconCanvasesRef.current[index], -20, -20, 40, 40);
           }
         } else {
-          // Fallback: render a numbered circle if no icons/images are provided.
+          // Show numbered circles if no icons/images are provided
           ctx.beginPath();
           ctx.arc(0, 0, 20, 0, Math.PI * 2);
           ctx.fillStyle = "#4444ff";
@@ -295,9 +292,9 @@ export function IconCloud({ icons, images }: IconCloudProps) {
           ctx.font = "16px Arial";
           ctx.fillText(`${icon.id + 1}`, 0, 0);
         }
+
         ctx.restore();
       });
-
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
@@ -308,19 +305,7 @@ export function IconCloud({ icons, images }: IconCloudProps) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [
-    icons,
-    images,
-    iconPositions,
-    isDragging,
-    mousePos,
-    targetRotation,
-    isClient,
-  ]);
-
-  if (!isClient) {
-    return null;
-  }
+  }, [icons, images, iconPositions, isDragging, mousePos, targetRotation]);
 
   return (
     <canvas
