@@ -1,6 +1,10 @@
 "use client";
-import { Variants } from "framer-motion";
 
+import { cn } from "@/lib/utils";
+import { AnimatePresence, motion, MotionProps, Variants } from "framer-motion";
+import { ElementType } from "react";
+
+type AnimationType = "text" | "word" | "character" | "line";
 type AnimationVariant =
   | "fadeIn"
   | "blurIn"
@@ -13,15 +17,30 @@ type AnimationVariant =
   | "scaleUp"
   | "scaleDown";
 
-const defaultContainerVariants: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
+interface TextAnimateProps extends MotionProps {
+  children: string;
+  className?: string;
+  segmentClassName?: string;
+  as?: ElementType;
+  by?: AnimationType;
+  startOnView?: boolean;
+  animation?: AnimationVariant;
+}
+
+const staggerTimings: Record<AnimationType, number> = {
+  text: 0.06,
+  word: 0.05,
+  character: 0.03,
+  line: 0.06,
 };
 
-const defaultItemAnimationVariants: Record<
-  AnimationVariant,
-  { container: Variants; item: Variants }
-> = {
+const defaultContainerVariants = {
+  hidden: { opacity: 1 },
+  show: { opacity: 1, transition: { staggerChildren: 0.05 } },
+  exit: { opacity: 0, transition: { staggerChildren: 0.05, staggerDirection: -1 } },
+};
+
+const defaultItemAnimationVariants: Record<AnimationVariant, { container: Variants; item: Variants }> = {
   fadeIn: {
     container: defaultContainerVariants,
     item: {
@@ -34,69 +53,61 @@ const defaultItemAnimationVariants: Record<
       exit: { opacity: 0, y: 20, transition: { duration: 0.3 } },
     },
   },
-  blurIn: {
-    container: defaultContainerVariants,
-    item: {
-      hidden: { filter: "blur(10px)" },
-      show: { filter: "blur(0px)" },
-    },
-  },
-  blurInUp: {
-    container: defaultContainerVariants,
-    item: {
-      hidden: { filter: "blur(10px)", y: 20 },
-      show: { filter: "blur(0px)", y: 0 },
-    },
-  },
-  blurInDown: {
-    container: defaultContainerVariants,
-    item: {
-      hidden: { filter: "blur(10px)", y: -20 },
-      show: { filter: "blur(0px)", y: 0 },
-    },
-  },
-  slideUp: {
-    container: defaultContainerVariants,
-    item: {
-      hidden: { y: 20 },
-      show: { y: 0 },
-    },
-  },
-  slideDown: {
-    container: defaultContainerVariants,
-    item: {
-      hidden: { y: -20 },
-      show: { y: 0 },
-    },
-  },
-  slideLeft: {
-    container: defaultContainerVariants,
-    item: {
-      hidden: { x: 20 },
-      show: { x: 0 },
-    },
-  },
-  slideRight: {
-    container: defaultContainerVariants,
-    item: {
-      hidden: { x: -20 },
-      show: { x: 0 },
-    },
-  },
-  scaleUp: {
-    container: defaultContainerVariants,
-    item: {
-      hidden: { scale: 0.8 },
-      show: { scale: 1 },
-    },
-  },
-  scaleDown: {
-    container: defaultContainerVariants,
-    item: {
-      hidden: { scale: 1.2 },
-      show: { scale: 1 },
-    },
-  },
 };
 
-export default defaultItemAnimationVariants;
+export function TextAnimate({
+  children,
+  className,
+  segmentClassName,
+  as: Component = "p",
+  startOnView = true,
+  by = "word",
+  animation = "fadeIn",
+  ...props
+}: TextAnimateProps) {
+  const MotionComponent = motion(Component);
+
+  const animationVariants = defaultItemAnimationVariants[animation] || defaultItemAnimationVariants["fadeIn"];
+
+  const finalVariants = {
+    container: {
+      ...animationVariants.container,
+      show: {
+        ...animationVariants.container.show,
+        transition: { staggerChildren: staggerTimings[by] },
+      },
+      exit: {
+        ...animationVariants.container.exit,
+        transition: { staggerChildren: staggerTimings[by], staggerDirection: -1 },
+      },
+    },
+    item: animationVariants.item,
+  };
+
+  const segments = by === "word" ? children.split(/(\s+)/) : children.split("");
+
+  return (
+    <AnimatePresence mode="popLayout">
+      <MotionComponent
+        variants={finalVariants.container}
+        initial="hidden"
+        whileInView={startOnView ? "show" : undefined}
+        animate={startOnView ? undefined : "show"}
+        exit="exit"
+        className={cn("whitespace-pre-wrap", className)}
+        {...props}
+      >
+        {segments.map((segment, i) => (
+          <motion.span
+            key={`${by}-${segment}-${i}`}
+            variants={finalVariants.item}
+            custom={i * staggerTimings[by]}
+            className={cn(by === "line" ? "block" : "inline-block whitespace-pre", segmentClassName)}
+          >
+            {segment}
+          </motion.span>
+        ))}
+      </MotionComponent>
+    </AnimatePresence>
+  );
+}
