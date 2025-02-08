@@ -21,13 +21,9 @@ interface TextAnimateProps extends MotionProps {
   children: string;
   className?: string;
   segmentClassName?: string;
-  delay?: number;
-  duration?: number;
-  variants?: Variants;
   as?: ElementType;
   by?: AnimationType;
   startOnView?: boolean;
-  once?: boolean;
   animation?: AnimationVariant;
 }
 
@@ -44,12 +40,6 @@ const defaultContainerVariants = {
   exit: { opacity: 0, transition: { staggerChildren: 0.05, staggerDirection: -1 } },
 };
 
-const defaultItemVariants: Variants = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1 },
-  exit: { opacity: 0 },
-};
-
 const defaultItemAnimationVariants: Record<AnimationVariant, { container: Variants; item: Variants }> = {
   fadeIn: {
     container: defaultContainerVariants,
@@ -63,37 +53,20 @@ const defaultItemAnimationVariants: Record<AnimationVariant, { container: Varian
       exit: { opacity: 0, y: 20, transition: { duration: 0.3 } },
     },
   },
-  slideUp: {
-    container: defaultContainerVariants,
-    item: {
-      hidden: { y: 20, opacity: 0 },
-      show: (delay: number) => ({
-        y: 0,
-        opacity: 1,
-        transition: { delay, duration: 0.3 },
-      }),
-      exit: { y: -20, opacity: 0, transition: { duration: 0.3 } },
-    },
-  },
 };
 
 export function TextAnimate({
   children,
-  delay = 0,
-  duration = 0.3,
-  variants,
   className,
   segmentClassName,
   as: Component = "p",
   startOnView = true,
-  once = false,
   by = "word",
   animation = "fadeIn",
   ...props
 }: TextAnimateProps) {
   const MotionComponent = motion(Component);
 
-  // Ensure animation is valid
   const animationVariants = defaultItemAnimationVariants[animation] || defaultItemAnimationVariants["fadeIn"];
 
   const finalVariants = {
